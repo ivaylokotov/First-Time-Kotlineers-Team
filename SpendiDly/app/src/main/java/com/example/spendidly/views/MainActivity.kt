@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
-
     override fun onBackPressed() {
         super.onBackPressed()
         AlertDialog.Builder(this)
