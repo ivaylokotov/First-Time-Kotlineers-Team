@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">SpendiDly</string>
+
+    <!--Splash screen stuff that we'll need-->
+    <string name="welcome_message">Welcome to SpendiDly!</string>
+    <string name="app_description">Your go-to budget management solution!</string>
+
+    <!--BottomNav titles-->
+    <string name="change_toUserInputFragment">Input</string>
+    <string name="change_toResultsFragment">Budget</string>
+    <string name="change_toAverageResultsFragment">Avg. Budget</string>
+
+    <string name="confirm_quit">Are you sure you want to leave?</string>
+    <string name="ok">Yes</string>
+
+    <!--EditText hints-->
+    <string name="enter_age_hint">Age</string>
+    <string name="enter_gross_annual_income_hint">Gross annual income</string>
+    <string name="enter_household_members_hint">Household members</string>
+    <string name="is_homeowner_label">Are you a homeowner?</string>
+    <string name="enter_net_annual_income_hint">Net annual income</string>
+    <string name="enter_zip_hint">ZIP code</string>
+
+    <string name="empty_api_results">No model found</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
