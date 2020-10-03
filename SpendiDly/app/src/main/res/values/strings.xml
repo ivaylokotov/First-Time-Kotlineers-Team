@@ -2,7 +2,7 @@
     <string name="app_name">SpendiDly</string>
 
     <!--Splash screen stuff that we'll need-->
-    <string name="welcome_message">Welcome to SpendiDly!</string>
+    <string name="welcome_message">Welcome to\nSpendiDly!</string>
     <string name="app_description">Your go-to budget management solution!</string>
 
     <!--BottomNav titles-->
