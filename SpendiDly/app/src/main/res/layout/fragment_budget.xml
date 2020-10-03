@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="viewModel"
             type="com.example.spendidly.viewmodels.BudgetFragmentViewModel" />
+        <variable
+            name="headerText"
+            type="java.lang.String" />
     </data>
 
     <ScrollView
@@ -18,9 +22,42 @@
         android:layout_width="match_parent">
 
         <TextView
+            android:id="@+id/budget_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@{headerText}"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/substances_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/substances_card"
+            layout="@layout/single_budget_segment_card"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@{viewModel.budget.toString()}" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            app:cardDrawable="@{@drawable/ic_baseline_local_drink_24}"
+            app:cardLabel="@{`Substances`}"
+            app:firstSubCardDrawable="@{@drawable/ic_baseline_local_drink_24}"
+            app:firstSubCardLabel="@{@string/alcoholic_beverages}"
+            app:firstSubCardValue="@{viewModel.budget.alcoholic_beverages}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/budget_header"
+            app:secondSubCardDrawable="@{@drawable/ic_baseline_health_24}"
+            app:secondSubCardLabel="@{@string/prescription_drugs}"
+            app:secondSubCardValue="@{viewModel.budget.prescription_drugs}"
+            app:thirdSubCardDrawable="@{@drawable/ic_baseline_smoking_24}"
+            app:thirdSubCardLabel="@{@string/tobacco_smoking}"
+            app:thirdSubCardValue="@{viewModel.budget.tobacco_and_smoking}"
+            tools:layout_conversion_absoluteWidth="156dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
