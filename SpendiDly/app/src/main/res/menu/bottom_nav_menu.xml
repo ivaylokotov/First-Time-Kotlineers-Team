@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+    android:id="@+id/userInputFragment"
+    android:checkable="true"
+    android:checked="true"
+    android:enabled="true"
+    android:icon="@drawable/ic_baseline_create_24"
+    android:title="@string/change_toUserInputFragment"
+    app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/latestBudgetFragment"
+        android:checkable="true"
+        android:checked="false"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/change_toResultsFragment"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/averageBudgetFragment"
+        android:checkable="true"
+        android:checked="false"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/change_toAverageResultsFragment"
+        app:showAsAction="ifRoom" />
 
 </menu>
