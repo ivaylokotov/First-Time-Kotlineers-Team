@@ -20,9 +20,4 @@ abstract class BudgetFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_budget_wrapper, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
-    }
-
 }
