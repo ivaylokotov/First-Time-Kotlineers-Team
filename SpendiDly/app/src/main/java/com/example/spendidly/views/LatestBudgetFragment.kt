@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.spendidly.R
 import com.example.spendidly.databinding.FragmentBudgetBinding
@@ -25,7 +26,6 @@ class LatestBudgetFragment : BudgetFragment() {
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         ).get(LatestBudgetFragmentViewModel::class.java)
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
         return binding.root // TODO: get viewModel and set the superclass binding variable to it
     }
 

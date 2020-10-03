@@ -43,7 +43,7 @@ class SpendiDRepository(
 
     suspend fun getAverageBudgetXCache(): BudgetX? {
         val allBudgetX = getAllBudgetXCache()
-        if(allBudgetX != null) {
+        if(allBudgetX != null && allBudgetX.isNotEmpty()) {
             return allBudgetX.reduce { f: BudgetX, s: BudgetX -> f + s } / allBudgetX.size
             // should work; FIXME if something bugs here (from reduce possibly)
         }
