@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import android.transition.AutoTransition
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -50,18 +51,24 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        AlertDialog.Builder(this)
-            .setMessage("Are you sure you want to leave?")
-            .setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
-                finish()
-            }
-            .setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
-                dialogInterface.dismiss()
-            }
-            .setIcon(R.drawable.ic_baseline_exit_to_app_24)
-            .create()
-            .show()
+        if(binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to leave?")
+                .setPositiveButton("Yes") { _: DialogInterface, _: Int ->
+                    finish()
+                }
+                .setNegativeButton("No") { dialogInterface: DialogInterface, _: Int ->
+                    dialogInterface.dismiss()
+                }
+                .setIcon(R.drawable.ic_baseline_exit_to_app_24)
+                .create()
+                .show()
+        }
     }
+
+
 
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration)
