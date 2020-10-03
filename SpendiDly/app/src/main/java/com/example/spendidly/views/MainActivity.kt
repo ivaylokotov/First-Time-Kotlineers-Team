@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
-
     override fun onBackPressed() {
         super.onBackPressed()
         if(binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
