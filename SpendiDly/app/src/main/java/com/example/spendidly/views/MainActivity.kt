@@ -1,5 +1,6 @@
 package com.example.spendidly.views
 
+import android.content.DialogInterface
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,6 +14,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import android.transition.AutoTransition
+import androidx.appcompat.app.AlertDialog
 import com.example.spendidly.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -30,6 +32,21 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         bottomNav.setupWithNavController(navController)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        AlertDialog.Builder(this)
+            .setMessage("Are you sure you want to leave?")
+            .setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
+                finish()
+            }
+            .setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
+                dialogInterface.dismiss()
+            }
+            .setIcon(R.drawable.ic_baseline_exit_to_app_24)
+            .create()
+            .show()
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
