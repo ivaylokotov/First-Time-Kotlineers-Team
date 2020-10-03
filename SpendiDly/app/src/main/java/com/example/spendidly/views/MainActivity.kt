@@ -23,4 +23,8 @@ class MainActivity : AppCompatActivity() {
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         bottomNav.setupWithNavController(navController)
     }
+
+    fun onBudgetCardTapped() {
+        // TODO: Method to respond to taps on budget result cards (expand view & show subcard)
+    }
 }
