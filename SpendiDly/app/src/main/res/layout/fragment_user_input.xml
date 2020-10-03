@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <!--TODO: Add viewmodel bindable properties here-->
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.spendidly.viewmodels.UserInputFragmentViewModel" />
+    </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true" >
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/userInputConstraintLayout"
+            android:id="@+id/cardHeaderConstraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:context=".views.UserInputFragment">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/welcome_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
                 android:text="@string/welcome_message"
-                android:textSize="24sp"
+                android:textSize="36sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/welcome_subtitle"
+                app:layout_constraintBottom_toTopOf="@+id/age_input_field"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -34,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
                 android:text="@string/app_description"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -48,7 +52,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
                 android:hint="@string/enter_age_hint"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
@@ -66,11 +69,13 @@
                     android:includeFontPadding="false"
                     android:inputType="numberSigned"
                     android:singleLine="true"
+                    android:text="@={viewModel.age}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     tools:layout_conversion_absoluteHeight="45dp"
                     tools:layout_conversion_absoluteWidth="20dp"
                     tools:layout_editor_absoluteX="4dp"
                     tools:layout_editor_absoluteY="4dp" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -78,8 +83,6 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
                 android:hint="@string/enter_gross_annual_income_hint"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
@@ -91,13 +94,11 @@
                 app:startIconDrawable="@drawable/ic_baseline_attach_money_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/text_input_gross_annual_income"
+                    android:id="@+id/text_input_gross_income"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:includeFontPadding="false"
                     android:inputType="numberSigned"
-                    android:singleLine="true"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="@={viewModel.grossAnnualIncome}"
                     tools:layout_conversion_absoluteHeight="45dp"
                     tools:layout_conversion_absoluteWidth="20dp"
                     tools:layout_editor_absoluteX="4dp"
@@ -109,30 +110,21 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:hint="@string/enter_gross_annual_income_hint"
+                android:hint="@string/enter_household_members_hint"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
-                app:hintEnabled="true"
                 app:layout_constraintBottom_toTopOf="@+id/net_annual_income_input_field"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gross_annual_income_input_field"
-                app:startIconDrawable="@drawable/ic_baseline_attach_money_24">
+                app:startIconDrawable="@drawable/ic_baseline_people_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/text_input_household_members"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:includeFontPadding="false"
                     android:inputType="numberSigned"
-                    android:singleLine="true"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    tools:layout_conversion_absoluteHeight="45dp"
-                    tools:layout_conversion_absoluteWidth="20dp"
-                    tools:layout_editor_absoluteX="4dp"
-                    tools:layout_editor_absoluteY="4dp" />
+                    android:text="@={viewModel.members}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -140,12 +132,9 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:hint="@string/enter_gross_annual_income_hint"
+                android:hint="@string/enter_net_annual_income_hint"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
-                app:hintEnabled="true"
                 app:layout_constraintBottom_toTopOf="@+id/zip_input_field"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -153,13 +142,11 @@
                 app:startIconDrawable="@drawable/ic_baseline_attach_money_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/text_input_net_annual_income"
+                    android:id="@+id/text_input_net_income"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:includeFontPadding="false"
                     android:inputType="numberSigned"
-                    android:singleLine="true"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="@={viewModel.netAnnualIncome}"
                     tools:layout_conversion_absoluteHeight="45dp"
                     tools:layout_conversion_absoluteWidth="20dp"
                     tools:layout_editor_absoluteX="4dp"
@@ -171,57 +158,51 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:hint="@string/enter_gross_annual_income_hint"
+                android:hint="@string/enter_zip_hint"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
-                app:hintEnabled="true"
                 app:layout_constraintBottom_toTopOf="@+id/is_homeowner_switch"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/net_annual_income_input_field"
-                app:startIconDrawable="@drawable/ic_baseline_attach_money_24">
+                app:startIconDrawable="@drawable/ic_baseline_mail_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/text_input_zip"
+                    android:id="@+id/text_input_zip_field"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:includeFontPadding="false"
                     android:inputType="numberSigned"
-                    android:singleLine="true"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    tools:layout_conversion_absoluteHeight="45dp"
-                    tools:layout_conversion_absoluteWidth="20dp"
-                    tools:layout_editor_absoluteX="4dp"
-                    tools:layout_editor_absoluteY="4dp" />
+                    android:text="@={viewModel.zipCode}" /> <!--converted to string in code-->
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/is_homeowner_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:checked="@={viewModel.isHomeowner()}"
                 android:text="@string/is_homeowner_label"
-                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/confirm_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/zip_input_field"
-                app:layout_constraintBottom_toTopOf="@+id/submit_button" />
+                app:layout_constraintTop_toBottomOf="@+id/zip_input_field" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/submit_button"
+                android:id="@+id/confirm_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="64dp"
                 android:background="@drawable/rounded_container"
                 android:drawableStart="@drawable/ic_baseline_check_24"
                 android:drawableLeft="@drawable/ic_baseline_check_24"
-                android:text="@string/submit_button_hint"
-                app:layout_constraintTop_toBottomOf="@id/is_homeowner_switch"
+                android:padding="10dp"
+                android:text="Save &amp; Calculate"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/is_homeowner_switch" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 </layout>

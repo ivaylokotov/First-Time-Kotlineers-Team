@@ -35,7 +35,6 @@ class UserInputFragmentViewModel(application: Application) : BaseViewModel(appli
     @Bindable
     val isHomeowner = MutableLiveData<Boolean>(false)
 
-
     // LiveData of generic Response?
     fun getBudgetX(): LiveData<ResponseState> = liveData { // liveData builder constructs a liveData object
         spendiDRepository.getBudgetXAsync(
@@ -59,5 +58,5 @@ class UserInputFragmentViewModel(application: Application) : BaseViewModel(appli
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) = callBacks.add(callback)
 
-    override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) = callBacks.add(callback)
+    override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) = callBacks.remove(callback)
 }
