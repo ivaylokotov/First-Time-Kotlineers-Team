@@ -146,7 +146,7 @@ data class BudgetX(
         )
     }
 
-    operator fun div(divisor: Int): BudgetX{
+    operator fun div(divisor: Int): BudgetX {
         return BudgetX(
             0,
             this.alcoholic_beverages / divisor,

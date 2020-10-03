@@ -23,7 +23,7 @@ class SpendiDRepository(
         return try {
             val budget = spendIdApi.getBudgetAsync(demographics)
 
-            Log.i("SpendidRepo", "Budget fetched:" + budget)
+            Log.i("SpendidRepository", "com.example.spendidly.models.Budget fetched:$budget")
 
             budgetXDao.insert(budget.budget)
 
@@ -39,17 +39,19 @@ class SpendiDRepository(
 
     fun getLatestBudgetXCache(): LiveData<BudgetX?> = budgetXDao.getLatestBudgetX()
 
-    suspend fun getAllBudgetXCache(): List<BudgetX>? = budgetXDao.getAllBudgetX()
+    private suspend fun getAllBudgetXCache(): List<BudgetX>? = budgetXDao.getAllBudgetX()
 
     suspend fun getAverageBudgetXCache(): BudgetX? {
         val allBudgetX = getAllBudgetXCache()
-        if(allBudgetX != null) {
-            return allBudgetX.reduce { f: BudgetX, s: BudgetX -> f + s } / allBudgetX.size
+        Log.i("SpendidRepo", "allBudgetsFetched$allBudgetX")
+        if(allBudgetX != null && allBudgetX.isNotEmpty()) {
+            return allBudgetX.reduce(BudgetX::plus) / allBudgetX.size
             // should work; FIXME if something bugs here (from reduce possibly)
         }
         return null
     }
 
+    // TODO: for use in other fragment, listing all demographics
     suspend fun getAllDemographicsXCache(): List<DemographicsX>? = demographicsXDao.getAllDemographicsX()
 
     suspend fun getLatestDemographicsXCache(): DemographicsX? = demographicsXDao.getLatestDemographicsX()

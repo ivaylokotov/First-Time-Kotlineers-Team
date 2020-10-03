@@ -9,9 +9,8 @@ import org.kodein.di.android.kodein
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 
-// base viewmodel class for all viewmodels
+// base viewModel class for all viewModels
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application), KodeinAware {
     override val kodein: Kodein by kodein(application.applicationContext) // delegate Kodein instance through appcontext
     val spendiDRepository: SpendiDRepository by instance(tag = "spendiDRepository")
-    // TODO: Implement the ViewModel
 }

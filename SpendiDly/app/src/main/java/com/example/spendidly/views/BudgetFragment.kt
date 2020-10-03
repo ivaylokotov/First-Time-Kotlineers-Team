@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.spendidly.R
 import com.example.spendidly.databinding.FragmentBudgetBinding
@@ -16,7 +17,7 @@ import org.kodein.di.KodeinAware
 
 // abstract fragment for fragments using the fragment_budget_wrapper layout
 // will prolly need this given how similar the fragments will be but delete this if not
-abstract class BudgetFragment : BaseFragment() {
+abstract class BudgetFragment : Fragment() {
     lateinit var binding: FragmentBudgetWrapperBinding
     lateinit var onCacheReceived: Observer<BudgetX?>
 
