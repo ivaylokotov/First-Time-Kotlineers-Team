@@ -101,6 +101,7 @@ data class BudgetX(
     @ColumnInfo(name = "toys_and_hobbies")
     val toys_and_hobbies: Int
 ) {
+    // needed for average calculation
     operator fun plus(model: BudgetX): BudgetX {
         return BudgetX(
             0,
