@@ -73,7 +73,7 @@
                 <!--Card-->
 
                 <ImageView
-                    android:id="@+id/cardImage"
+                    android:id="@+id/cardIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -96,7 +96,7 @@
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/expandCardButton"
-                    app:layout_constraintStart_toEndOf="@+id/cardImage"
+                    app:layout_constraintStart_toEndOf="@+id/cardIcon"
                     app:layout_constraintTop_toTopOf="parent"
                     android:gravity="center_horizontal" />
 
