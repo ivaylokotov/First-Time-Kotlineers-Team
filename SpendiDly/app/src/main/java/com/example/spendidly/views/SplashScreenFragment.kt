@@ -31,10 +31,10 @@ class SplashScreenFragment : Fragment() {
 
         // Navigate to input fragment after 3 seconds
         view?.postDelayed({
+            findNavController().navigate(R.id.action_splashScreenFragment_to_userInputFragment)
+
             bottomNav.visibility = View.VISIBLE
             activity.supportActionBar?.show()
-
-            findNavController().navigate(R.id.action_splashScreenFragment_to_userInputFragment)
         }, 3000)
     }
 }
