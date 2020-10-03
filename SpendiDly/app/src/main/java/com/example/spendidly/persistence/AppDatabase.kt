@@ -26,7 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
     }
-    
+
     abstract fun demographicsXDao() : DemographicsXDao
 
     abstract fun budgetXDao() : BudgetXDao
