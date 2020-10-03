@@ -20,6 +20,7 @@ import org.kodein.di.KodeinAware
 abstract class BudgetFragment : Fragment() {
     lateinit var binding: FragmentBudgetWrapperBinding
     lateinit var onCacheReceived: Observer<BudgetX?>
+    lateinit var headerText: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +29,7 @@ abstract class BudgetFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_budget_wrapper, container, false)
         binding.lifecycleOwner = this
+        binding.headerText = headerText
         // TODO: set databinding fields
         return binding.root
     }

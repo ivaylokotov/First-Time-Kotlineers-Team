@@ -15,6 +15,10 @@ import com.example.spendidly.viewmodels.LatestBudgetFragmentViewModel
 class LatestBudgetFragment : BudgetFragment() {
     private lateinit var viewModel: LatestBudgetFragmentViewModel
 
+    init {
+        headerText = "Your Latest Budget"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@{(demographicsX.insertTime / 120).toString() + `hours ago`}"
+            android:text="@{(demographicsX.insertTime / 120) + `hours ago`}"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/ageHouseholdMembersLayout"
