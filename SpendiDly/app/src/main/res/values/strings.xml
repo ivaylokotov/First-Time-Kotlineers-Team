@@ -65,9 +65,10 @@
     <string name="medical">Medical</string>
     <string name="medical_services">Medical Services</string>
     <string name="medical_supplies">Medical supplies</string>
-    <string name="mortgages_debt">Mortgages/Debt</string>
+    <string name="mortgage_debt">Mortgages/Debt</string>
     <string name="mortgage_rent">Mortgage &amp; Rent</string>
     <string name="other_debt">Other Debt Payments</string>
+    <string name="other_lodging">Other Lodging</string>
     <string name="other">Other</string>
     <string name="pets">Pets</string>
     <string name="reading">Reading</string>

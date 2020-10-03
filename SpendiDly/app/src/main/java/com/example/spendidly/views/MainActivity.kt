@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         val subCardLayout: ConstraintLayout = cardViewLayout.findViewById(R.id.subCardConstraintLayout)
         
-        if(subCardLayout.visibility == View.VISIBLE) {
+        if(subCardLayout.visibility == View.GONE) {
             val cardView = cardViewLayout.parent as CardView
 
             TransitionManager.beginDelayedTransition(cardView, AutoTransition())
