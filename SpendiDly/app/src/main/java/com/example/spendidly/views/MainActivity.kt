@@ -11,4 +11,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         // TODO: Disable bottomnav & action bar for splash screen
     }
+
+    fun onBudgetCardTapped() {
+        // TODO: Method to respond to taps on budget result cards (expand view & show subcard)
+    }
 }
