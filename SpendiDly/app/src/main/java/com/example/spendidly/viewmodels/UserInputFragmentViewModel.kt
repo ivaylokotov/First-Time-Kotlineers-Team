@@ -36,15 +36,17 @@ class UserInputFragmentViewModel(application: Application) : BaseViewModel(appli
     // LiveData of generic Response?
     fun getBudgetX() {
         viewModelScope.launch {
-            spendiDRepository.getBudgetXAsync(Demographics(
-                DemographicsX(
-                    System.currentTimeMillis() / 1000,
-                0,
-                0,
-                0,
-                false,
-                0,
-                "21324") // Placeholder; TODO: To be replaced with values from databinding input fields
+            spendiDRepository.getBudgetXAsync(
+                Demographics(
+                    DemographicsX(
+                        System.currentTimeMillis() / 1000,
+                        age.value!!.toInt(),
+                        grossAnnualIncome.value!!.toInt(),
+                        members.value!!.toInt(),
+                        isHomeowner.value!!,
+                        netAnnualIncome.value!!.toInt(),
+                        zipCode.value!!
+                    ) // Unwrapping guaranteed (handled by input validation in view)
                 )
             )
         }
