@@ -1,6 +1,7 @@
 package com.example.spendidly.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
@@ -9,6 +10,7 @@ import com.example.spendidly.models.ResponseState
 import com.example.test.data.Demographics
 import com.example.test.data.DemographicsX
 import kotlinx.coroutines.launch
+import java.util.*
 
 class UserInputFragmentViewModel(application: Application) : BaseViewModel(application), Observable {
     // TODO: Implement the ViewModel
@@ -36,22 +38,29 @@ class UserInputFragmentViewModel(application: Application) : BaseViewModel(appli
     val isHomeowner = MutableLiveData<Boolean>(false)
 
     // LiveData of generic Response?
-    fun getBudgetX(): LiveData<ResponseState> = liveData { // liveData builder constructs a liveData object
-        spendiDRepository.getBudgetXAsync(
-            Demographics(
-                DemographicsX(
-                    System.currentTimeMillis() / 1000,
-                    age.value!!.toInt(),
-                    grossAnnualIncome.value!!.toInt(),
-                    members.value!!.toInt(),
-                    isHomeowner.value!!,
-                    netAnnualIncome.value!!.toInt(),
-                    zipCode.value!!
-                ) // Unwrapping guaranteed (handled by input validation in view)
-            )
-        ).also {
-            emit(it)
-        }
+    fun getBudgetX(): LiveData<ResponseState> =
+        liveData { // liveData builder constructs a liveData object
+            spendiDRepository.getBudgetXAsync(
+                getDemographicsFields()
+            ).also {
+                emit(it)
+            }
+    }
+
+    private fun getDemographicsFields(): Demographics {
+        val demographics = DemographicsX(
+            Calendar.getInstance().timeInMillis / 1000,
+            age.value!!.toInt(),
+            grossAnnualIncome.value!!.toInt(),
+            members.value!!.toInt(),
+            isHomeowner.value!!,
+            netAnnualIncome.value!!.toInt(),
+            zipCode.value!! // ex: "35210"
+        )
+
+        Log.i("UserInputFragViewModel", "Demographics sent:" + demographics.toString())
+
+        return Demographics(demographics = demographics)
     }
 
     fun setIsHomeowner(isHomeowner: Boolean) = this.isHomeowner.postValue(isHomeowner)

@@ -1,5 +1,6 @@
 package com.example.spendidly.repos
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.spendidly.api.SPENDiDAPI
 import com.example.spendidly.models.ResponseState
@@ -21,6 +22,8 @@ class SpendiDRepository(
 
         return try {
             val budget = spendIdApi.getBudgetAsync(demographics)
+
+            Log.i("SpendidRepo", "Budget fetched:" + budget)
 
             budgetXDao.insert(budget.budget)
 
