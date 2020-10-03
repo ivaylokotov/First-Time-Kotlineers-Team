@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import android.transition.AutoTransition
+import android.view.Window
 import androidx.appcompat.app.AlertDialog
 import com.example.spendidly.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
