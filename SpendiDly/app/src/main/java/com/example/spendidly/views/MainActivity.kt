@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setupWithNavController(navController)
     }
 
-    fun onBudgetCardTapped() {
+    fun onBudgetCardButtonTapped(view: View) {
         // TODO: Method to respond to taps on budget result cards (expand view & show subcard)
     }
 }

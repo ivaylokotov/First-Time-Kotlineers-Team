@@ -1,14 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <data>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data> <!--Inject variables from results page into card here-->
+        <import type="android.view.View"/>
 
+        <variable
+            name="cardLabel"
+            type="java.lang.String" />
+        <variable
+            name="firstSubCardLabel"
+            type="java.lang.String" />
+        <variable
+            name="secondSubCardLabel"
+            type="java.lang.String" />
+        <variable
+            name="thirdSubCardLabel"
+            type="java.lang.String" />
+
+        <variable
+            name="firstSubCardValue"
+            type="java.lang.Integer" />
+        <variable
+            name="secondSubCardValue"
+            type="java.lang.Integer" />
+        <variable
+            name="thirdSubCardValue"
+            type="java.lang.Integer" />
+
+        <variable
+            name="cardDrawable"
+            type="android.graphics.drawable.Drawable" />
+        <variable
+            name="firstSubCardDrawable"
+            type="android.graphics.drawable.Drawable" />
+        <variable
+            name="secondSubCardDrawable"
+            type="android.graphics.drawable.Drawable" />
+        <variable
+            name="thirdSubCardDrawable"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="shouldHideFirstSubCard"
+            type="boolean" /> <!-- only true/false -->
+        <variable
+            name="shouldHideSecondSubCard"
+            type="boolean" /> <!--Third cardview is automatically repositioned depending on constraints-->
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp">
 
-        <!--Represents a single semantically grouped segment of the model response in a card with subcards-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--Represents a single semantically grouped segment of the model response in a card with subcards-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardHeaderConstraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/subCardConstraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!--Card-->
+
+                <ImageView
+                    android:id="@+id/cardImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:scaleType="centerCrop"
+                    android:src="@{cardDrawable}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="16dp" />
+
+                <TextView
+                    android:id="@+id/cardTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:maxWidth="200dp"
+                    android:singleLine="true"
+                    android:text="@{cardLabel}"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/expandCardButton"
+                    app:layout_constraintStart_toEndOf="@+id/cardImage"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:gravity="center_horizontal" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/expandCardButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/ic_baseline_chevron_right_24"
+                    android:gravity="end"
+                    android:onClick="onBudgetCardButtonTapped"
+                    app:iconGravity="end"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/subCardConstraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardHeaderConstraintLayout">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
 </layout>
