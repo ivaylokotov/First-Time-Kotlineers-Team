@@ -10,30 +10,43 @@ import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import android.transition.AutoTransition
-import android.view.Window
 import androidx.appcompat.app.AlertDialog
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.spendidly.R
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.spendidly.databinding.MainActivityBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var bottomNav: BottomNavigationView
+    lateinit var binding: MainActivityBinding
+    private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
-        // TODO: Disable bottomnav & action bar for splash screen
-        bottomNav = findViewById(R.id.bottom_nav)
+        binding = DataBindingUtil.setContentView(this, R.layout.main_activity)
+        navController = findNavController(R.id.nav_host_fragment)
+
+        binding.bottomNav.setupWithNavController(navController)
+
+        // configures which fragments are the top-level ones
+        appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.userInputFragment, R.id.latestBudgetFragment, R.id.averageBudgetFragment),
+            binding.drawerLayout
+        )
+
+        // setup bottomNav
+        binding.navView.setupWithNavController(navController)
+
+        // Setup drawer with the actionBar
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
-    override fun onStart() {
-        super.onStart()
-        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-        bottomNav.setupWithNavController(navController)
-    }
 
     override fun onBackPressed() {
         super.onBackPressed()
@@ -48,6 +61,10 @@ class MainActivity : AppCompatActivity() {
             .setIcon(R.drawable.ic_baseline_exit_to_app_24)
             .create()
             .show()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration)
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
