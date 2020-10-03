@@ -52,5 +52,5 @@ class SpendiDRepository(
 
     suspend fun getAllDemographicsXCache(): List<DemographicsX>? = demographicsXDao.getAllDemographicsX()
 
-    fun getLatestDemographicsXCache(): LiveData<DemographicsX?> = demographicsXDao.getLatestDemographicsX()
+    suspend fun getLatestDemographicsXCache(): DemographicsX? = demographicsXDao.getLatestDemographicsX()
 }

@@ -11,5 +11,5 @@ interface DemographicsXDao : BaseDao<DemographicsX> {
     suspend fun getAllDemographicsX() : List<DemographicsX>?
 
     @Query("SELECT * FROM demographics ORDER BY insertTime DESC LIMIT 1")
-    fun getLatestDemographicsX() : LiveData<DemographicsX?>
+    suspend fun getLatestDemographicsX() : DemographicsX?
 }

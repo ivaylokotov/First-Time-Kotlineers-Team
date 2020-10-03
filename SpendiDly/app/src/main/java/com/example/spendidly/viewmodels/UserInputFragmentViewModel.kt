@@ -37,7 +37,20 @@ class UserInputFragmentViewModel(application: Application) : BaseViewModel(appli
     @Bindable
     val isHomeowner = MutableLiveData<Boolean>(false)
 
-    // LiveData of generic Response?
+    init {
+        viewModelScope.launch {
+            val latestDemographicsX: DemographicsX? = spendiDRepository.getLatestDemographicsXCache()
+            if(latestDemographicsX != null) {
+                age.postValue(latestDemographicsX.age.toString())
+                grossAnnualIncome.postValue(latestDemographicsX.gross_annual_income.toString())
+                members.postValue(latestDemographicsX.household_members.toString())
+                netAnnualIncome.postValue(latestDemographicsX.net_annual_income.toString())
+                zipCode.postValue(latestDemographicsX.zip)
+                isHomeowner.postValue(latestDemographicsX.is_homeowner)
+            }
+        }
+    }
+
     fun getBudgetX(): LiveData<ResponseState> =
         liveData { // liveData builder constructs a liveData object
             spendiDRepository.getBudgetXAsync(

@@ -7,10 +7,15 @@
             type="com.example.spendidly.viewmodels.BudgetFragmentViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.BudgetFragment">
+        android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        tools:context=".views.BudgetFragment"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
         <TextView
             android:layout_width="match_parent"
@@ -18,4 +23,6 @@
             android:text="Results" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

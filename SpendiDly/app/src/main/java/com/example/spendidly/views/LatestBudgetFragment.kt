@@ -28,4 +28,9 @@ class LatestBudgetFragment : BudgetFragment() {
         binding.lifecycleOwner = this
         return binding.root // TODO: get viewModel and set the superclass binding variable to it
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.getLatestBudget().observe(viewLifecycleOwner, onCacheReceived)
+    }
 }
