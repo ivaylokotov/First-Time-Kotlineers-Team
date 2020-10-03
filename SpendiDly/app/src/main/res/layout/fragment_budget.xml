@@ -18,7 +18,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         tools:context=".views.BudgetFragment"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent">
 
         <TextView
@@ -44,10 +44,11 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="16dp"
             app:cardDrawable="@{@drawable/ic_baseline_local_drink_24}"
-            app:cardLabel="@{`Substances`}"
+            app:cardLabel="@{@string/substances}"
             app:firstSubCardDrawable="@{@drawable/ic_baseline_local_drink_24}"
             app:firstSubCardLabel="@{@string/alcoholic_beverages}"
             app:firstSubCardValue="@{viewModel.budget.alcoholic_beverages}"
+            app:layout_constraintBottom_toTopOf="@id/personal_card"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/budget_header"
@@ -57,6 +58,81 @@
             app:thirdSubCardDrawable="@{@drawable/ic_baseline_smoking_24}"
             app:thirdSubCardLabel="@{@string/tobacco_smoking}"
             app:thirdSubCardValue="@{viewModel.budget.tobacco_and_smoking}"
+            tools:layout_conversion_absoluteWidth="156dp" />
+
+        <include
+            android:id="@+id/personal_card"
+            layout="@layout/single_budget_segment_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            app:cardDrawable="@{@drawable/ic_baseline_person_24}"
+            app:cardLabel="@{@string/personal}"
+            app:firstSubCardDrawable="@{@drawable/ic_baseline_attach_money_24}"
+            app:firstSubCardLabel="@{@string/cash_contributions}"
+            app:firstSubCardValue="@{viewModel.budget.cash_contributions}"
+            app:layout_constraintBottom_toTopOf="@+id/media_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/substances_card"
+            app:secondSubCardDrawable="@{@drawable/ic_baseline_school_24}"
+            app:secondSubCardLabel="@{@string/education}"
+            app:secondSubCardValue="@{viewModel.budget.education}"
+            app:thirdSubCardDrawable="@{@drawable/ic_baseline_spa_24}"
+            app:thirdSubCardLabel="@{@string/personal_care}"
+            app:thirdSubCardValue="@{viewModel.budget.personal_care}"
+            tools:layout_conversion_absoluteWidth="156dp" />
+
+        <include
+            android:id="@+id/media_card"
+            layout="@layout/single_budget_segment_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            app:cardDrawable="@{@drawable/ic_baseline_settings_phone_24}"
+            app:cardLabel="@{@string/media}"
+            app:firstSubCardDrawable="@{@drawable/ic_baseline_phone_24}"
+            app:firstSubCardLabel="@{@string/celluar_phone_service}"
+            app:firstSubCardValue="@{viewModel.budget.cellular_phone_service}"
+            app:layout_constraintBottom_toTopOf="@+id/insurance_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personal_card"
+            app:secondSubCardDrawable="@{@drawable/ic_baseline_phone_callback_24}"
+            app:secondSubCardLabel="@{@string/residential_phone_services}"
+            app:secondSubCardValue="@{viewModel.budget.residential_phone_service}"
+            app:thirdSubCardDrawable="@{@drawable/ic_baseline_build_24}"
+            app:thirdSubCardLabel="@{@string/media_hardware_services}"
+            app:thirdSubCardValue="@{viewModel.budget.media_hardware_and_services}"
+            tools:layout_conversion_absoluteWidth="156dp" />
+
+
+        <include
+            android:id="@+id/insurance_card"
+            layout="@layout/single_budget_segment_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            app:cardDrawable="@{@drawable/ic_baseline_security_24}"
+            app:cardLabel="@{@string/insurance}"
+            app:firstSubCardDrawable="@{@drawable/ic_baseline_health_24}"
+            app:firstSubCardLabel="@{`Health Insurance`}"
+            app:firstSubCardValue="@{viewModel.budget.health_insurance}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/media_card"
+            app:secondSubCardDrawable="@{@drawable/ic_baseline_health_2_24}"
+            app:secondSubCardLabel="@{@string/life_personal_insurance}"
+            app:secondSubCardValue="@{viewModel.budget.life_and_personal_insurance}"
+            app:thirdSubCardDrawable="@{@drawable/ic_baseline_directions_car_24}"
+            app:thirdSubCardLabel="@{@string/vehicle_insurance}"
+            app:thirdSubCardValue="@{viewModel.budget.vehicle_insurance}"
             tools:layout_conversion_absoluteWidth="156dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
