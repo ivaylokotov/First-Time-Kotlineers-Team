@@ -11,8 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-const val BASE_URL = "https://api.spendid.io/v1.0/"
-
 interface SPENDiDAPI {
     @POST("budgets/generate")
     suspend fun getBudgetAsync(
@@ -20,6 +18,7 @@ interface SPENDiDAPI {
     ) : Budget
 
     companion object {
+        const val BASE_URL = "https://api.spendid.io/v1.0/"
 
         operator fun invoke(): SPENDiDAPI {
             // TODO: Check connectivity for request interceptor
