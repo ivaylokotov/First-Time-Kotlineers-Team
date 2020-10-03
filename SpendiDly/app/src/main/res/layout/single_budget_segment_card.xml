@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data> <!--Inject variables from results page into card here-->
         <import type="android.view.View"/>
@@ -89,6 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="marquee"
+                    android:gravity="center_horizontal"
                     android:maxWidth="200dp"
                     android:singleLine="true"
                     android:text="@{cardLabel}"
@@ -97,8 +99,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/expandCardButton"
                     app:layout_constraintStart_toEndOf="@+id/cardIcon"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:gravity="center_horizontal" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/expandCardButton"
@@ -119,9 +120,54 @@
                 android:id="@+id/subCardConstraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardHeaderConstraintLayout">
+
+
+                <include
+                    android:id="@+id/firstSubCard"
+                    layout="@layout/single_budget_segment_subcard"
+                    android:background="@drawable/rounded_container"
+                    android:visibility="@{shouldHideFirstSubCard ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toTopOf="@+id/secondSubCard"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:subCardDrawable="@{firstSubCardDrawable}"
+                    app:subCardLabel="@{firstSubCardLabel}"
+                    app:subCardValue="@{firstSubCardValue}" />
+
+                <include
+                    android:id="@+id/secondSubCard"
+                    layout="@layout/single_budget_segment_subcard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_container"
+                    android:visibility="@{shouldHideSecondSubCard ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toTopOf="@+id/thirdSubCard"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/firstSubCard"
+                    app:subCardDrawable="@{secondSubCardDrawable}"
+                    app:subCardLabel="@{secondSubCardLabel}"
+                    app:subCardValue="@{secondSubCardValue}" />
+
+                <include
+                    android:id="@+id/thirdSubCard"
+                    layout="@layout/single_budget_segment_subcard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/rounded_container"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/secondSubCard"
+                    app:subCardDrawable="@{thirdSubCardDrawable}"
+                    app:subCardLabel="@{thirdSubCardLabel}"
+                    app:subCardValue="@{thirdSubCardValue}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
