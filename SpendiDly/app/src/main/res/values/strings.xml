@@ -2,7 +2,7 @@
     <string name="app_name">SpendiDly</string>
 
     <!--Splash screen stuff that we'll need-->
-    <string name="welcome_message">Welcome to SpendiDly!</string>
+    <string name="welcome_message">Welcome to\nSpendiDly!</string>
     <string name="app_description">Your go-to budget management solution!</string>
 
     <!--BottomNav titles-->
@@ -20,6 +20,11 @@
     <string name="is_homeowner_label">Are you a homeowner?</string>
     <string name="enter_net_annual_income_hint">Net annual income</string>
     <string name="enter_zip_hint">ZIP code</string>
+
+    <!--Results Categories-->
+
+    <!--Misc-->
+    <string name="submit_button_hint">Submit &amp; Save</string>
 
     <string name="empty_api_results">No model found</string>
     <!-- TODO: Remove or change this placeholder text -->
