@@ -16,14 +16,22 @@ import android.transition.AutoTransition
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.spendidly.R
+import com.example.spendidly.adapters.DemographicsXAdapter
 import com.example.spendidly.databinding.MainActivityBinding
+import com.example.spendidly.viewmodels.LatestBudgetFragmentViewModel
+import com.example.spendidly.viewmodels.MainActivityViewModel
+import com.example.test.data.DemographicsX
 
 class MainActivity : AppCompatActivity() {
+    lateinit var viewModel: MainActivityViewModel
     lateinit var binding: MainActivityBinding
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -31,6 +39,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.main_activity)
+        viewModel = ViewModelProvider(this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        ).get(MainActivityViewModel::class.java)
         navController = findNavController(R.id.nav_host_fragment)
 
         binding.bottomNav.setupWithNavController(navController)
@@ -46,6 +57,21 @@ class MainActivity : AppCompatActivity() {
 
         // Setup drawer with the actionBar
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        val recyclerView = findViewById<RecyclerView>(R.id.drawer_recycler_view)
+
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        viewModel.getAllDemographics().observe(this, {
+            if(it != null) {
+                if(recyclerView.adapter == null) {
+                    recyclerView.adapter = DemographicsXAdapter(it)
+                } else {
+                    (recyclerView.adapter as DemographicsXAdapter).setDemographicsX(it)
+                }
+            }
+        })
     }
 
     override fun onBackPressed() {
@@ -66,8 +92,6 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
     }
-
-
 
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration)

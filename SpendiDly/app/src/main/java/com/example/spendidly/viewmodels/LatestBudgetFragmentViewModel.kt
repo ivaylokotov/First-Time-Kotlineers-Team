@@ -8,8 +8,7 @@ import kotlinx.coroutines.launch
 
 class LatestBudgetFragmentViewModel(application: Application) :
     BudgetFragmentViewModel(application) {
-    // TODO: Implement the ViewModel
-    // TODO: use database cache as single source of truth
+
     fun getLatestBudget(): LiveData<BudgetX?> {
         budget = spendiDRepository.getLatestBudgetXCache()
         return budget

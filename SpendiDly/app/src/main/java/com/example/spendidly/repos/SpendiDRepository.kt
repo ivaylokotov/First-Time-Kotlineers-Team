@@ -52,8 +52,7 @@ class SpendiDRepository(
         return null
     }
 
-    // TODO: for use in other fragment, listing all demographics
-    suspend fun getAllDemographicsXCache(): List<DemographicsX>? = demographicsXDao.getAllDemographicsX()
+    fun getAllDemographicsXCache(): LiveData<List<DemographicsX>?> = demographicsXDao.getAllDemographicsX()
 
     suspend fun getLatestDemographicsXCache(): DemographicsX? = demographicsXDao.getLatestDemographicsX()
 }
