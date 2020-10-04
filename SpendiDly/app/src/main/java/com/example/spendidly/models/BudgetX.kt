@@ -100,4 +100,49 @@ data class BudgetX(
     val reading: Int,
     @ColumnInfo(name = "toys_and_hobbies")
     val toys_and_hobbies: Int
-)
+
+
+) {
+    fun isValid(): Boolean {
+        return this.alcoholic_beverages != 0 &&
+                this.prescription_drugs != 0 &&
+                this.tobacco_and_smoking != 0 &&
+                this.cash_contributions != 0 &&
+                this.education != 0 &&
+                this.personal_care != 0 &&
+                this.cellular_phone_service != 0 &&
+                this.residential_phone_service != 0 &&
+                this.cellular_phone_service != 0 &&
+                this.media_hardware_and_services != 0 &&
+                this.health_insurance != 0 &&
+                this.life_and_personal_insurance != 0 &&
+                this.vehicle_insurance != 0 &&
+                this.clothing_items_and_services != 0 &&
+                this.fees_and_admissions != 0 &&
+                this.miscellaneous != 0 &&
+                this.electricity != 0 &&
+                this.water_and_public_services != 0 &&
+                this.savings != 0 &&
+                this.public_and_other_transportation != 0 &&
+                this.vehicle_maintenance_and_repairs != 0 &&
+                this.vehicle_purchase_and_lease != 0 &&
+                this.home_maintenance_and_repairs != 0 &&
+                this.household_operations != 0 &&
+                this.housekeeping_supplies != 0 &&
+                this.food_home != 0 &&
+                this.food_out != 0 &&
+                this.furniture_and_appliances != 0 &&
+                this.heating_fuels_other != 0 &&
+                this.natural_gas != 0 &&
+                this.gasoline != 0 &&
+                this.medical_services != 0 &&
+                this.medical_supplies != 0 &&
+                this.mortgage_and_rent != 0 &&
+                this.other_debt_payments != 0 &&
+                this.other_lodging != 0 &&
+                this.pets != 0 &&
+                this.reading != 0 &&
+                this.toys_and_hobbies != 0
+    }
+
+}

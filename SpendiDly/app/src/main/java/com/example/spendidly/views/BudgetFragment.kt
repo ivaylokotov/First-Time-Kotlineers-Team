@@ -37,7 +37,7 @@ abstract class BudgetFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onCacheReceived = Observer {
-            if (it != null) {
+            if (it != null && it.isValid()) {
                 view.findViewById<ScrollView>(R.id.fragment_results).visibility =
                     View.VISIBLE // enable inner layout
                 view.findViewById<TextView>(R.id.empty_api_text).visibility =
