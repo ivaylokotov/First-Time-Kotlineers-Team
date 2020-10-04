@@ -37,19 +37,11 @@ class SpendiDRepository(
         }
     }
 
+    // latest cache
     fun getLatestBudgetXCache(): LiveData<BudgetX?> = budgetXDao.getLatestBudgetX()
 
-    private suspend fun getAllBudgetXCache(): List<BudgetX>? = budgetXDao.getAllBudgetX()
-
-    suspend fun getAverageBudgetXCache(): BudgetX? {
-        val allBudgetX = getAllBudgetXCache()
-        Log.i("SpendidRepo", "allBudgetsFetched$allBudgetX")
-        if(allBudgetX != null && allBudgetX.isNotEmpty()) {
-            return allBudgetX.reduce(BudgetX::plus) / allBudgetX.size
-            // should work; FIXME if something bugs here (from reduce possibly)
-        }
-        return null
-    }
+    // average cache
+    fun getAverageBudget() : LiveData<BudgetX?> = budgetXDao.getAverageBudget()
 
     // TODO: for use in other fragment, listing all demographics
     suspend fun getAllDemographicsXCache(): List<DemographicsX>? = demographicsXDao.getAllDemographicsX()
