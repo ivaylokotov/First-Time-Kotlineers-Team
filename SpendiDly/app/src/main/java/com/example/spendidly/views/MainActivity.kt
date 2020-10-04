@@ -26,6 +26,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.spendidly.R
 import com.example.spendidly.adapters.DemographicsXAdapter
 import com.example.spendidly.databinding.MainActivityBinding
+import com.example.spendidly.utils.Constants
+import com.example.spendidly.utils.VerticalSpaceItemDecoration
 import com.example.spendidly.viewmodels.LatestBudgetFragmentViewModel
 import com.example.spendidly.viewmodels.MainActivityViewModel
 import com.example.test.data.DemographicsX
@@ -62,6 +64,7 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.addItemDecoration(VerticalSpaceItemDecoration(Constants.verticalSpaceOffset))
 
         viewModel.getAllDemographics().observe(this, {
             if(it != null) {

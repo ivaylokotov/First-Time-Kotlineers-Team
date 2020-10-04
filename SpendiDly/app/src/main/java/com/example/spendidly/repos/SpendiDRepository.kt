@@ -18,19 +18,16 @@ class SpendiDRepository(
 ) {
 
     suspend fun getBudgetXAsync(demographics: Demographics): ResponseState {
-        demographicsXDao.insert(demographics.demographics)
-
         return try {
             val budget = spendIdApi.getBudgetAsync(demographics)
 
             Log.i("SpendidRepository", "com.example.spendidly.models.Budget fetched:$budget")
 
             budgetXDao.insert(budget.budget)
-
+            demographicsXDao.insert(demographics.demographics)
             ResponseState.Success(budget)
         } catch(ex: Exception) { // the only way of handling multiple exceptions rn
             when (ex) {
-                // TODO: probably add custom exception if the user has no access to Internet
                 is HttpException -> ResponseState.Error.NetworkError(ex.code()) // api errors
                 is SPENDiDAPI.NoConnectivityException -> ResponseState.Error.NoConnectivityError // connection errors
                 else -> ResponseState.Unknown
