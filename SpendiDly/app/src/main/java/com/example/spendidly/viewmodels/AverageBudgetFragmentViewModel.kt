@@ -11,11 +11,10 @@ import kotlinx.coroutines.launch
 class AverageBudgetFragmentViewModel(application: Application) : BudgetFragmentViewModel(application) {
     // TODO: use database cache as single source of truth
     fun getAverageBudgetX(): LiveData<BudgetX?> {
-        viewModelScope.launch {
-            budget = MutableLiveData(spendiDRepository.getAverageBudgetXCache())
+        budget = spendiDRepository.getAverageBudget()
 
-            Log.i("AverageVM", "fetchedAverageBudget${budget.value}")
-        }
+        Log.i("AverageVM", "fetchedAverageBudget${budget.value}")
+
         return budget
     }
 }
