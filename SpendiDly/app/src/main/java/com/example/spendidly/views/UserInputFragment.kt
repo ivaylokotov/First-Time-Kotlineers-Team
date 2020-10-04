@@ -71,6 +71,7 @@ class UserInputFragment : BaseFragment() {
                         navController.navigate(R.id.action_userInputFragment_to_latestBudgetFragment)
                     }
                     is ResponseState.Error.NetworkError -> showToast("Network error: code ${it.errorCode}")
+                    is ResponseState.Error.NoConnectivityError -> showToast("Network error! No connection!")
                 }
             })
         }
