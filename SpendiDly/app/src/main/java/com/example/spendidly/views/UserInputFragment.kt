@@ -43,7 +43,6 @@ class UserInputFragment : BaseFragment() {
         viewModel = ViewModelProvider(
             requireActivity(),
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-
         ).get(UserInputFragmentViewModel::class.java)
 
         val view = binding.root
@@ -97,7 +96,7 @@ class UserInputFragment : BaseFragment() {
             return@Predicate it.isEmpty() || it.length >= 3 || it.toLong() < 18
         }))
 
-        ageInputEditText.addTextChangedListener(PredicateTextWatcher(ageInputEditText, Constants.incomeInputError, Predicate {
+        grossIncomeEditText.addTextChangedListener(PredicateTextWatcher(grossIncomeEditText, Constants.incomeInputError, Predicate {
             return@Predicate it.isEmpty() || it.length >= 15 || it.toLong() < 0
         }))
 

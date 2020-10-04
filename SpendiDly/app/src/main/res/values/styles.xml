@@ -4,6 +4,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="windowActionBarOverlay">true</item>
 
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
         <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
