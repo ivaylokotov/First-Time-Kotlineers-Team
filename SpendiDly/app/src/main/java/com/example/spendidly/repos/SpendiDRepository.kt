@@ -18,41 +18,30 @@ class SpendiDRepository(
 ) {
 
     suspend fun getBudgetXAsync(demographics: Demographics): ResponseState {
-        demographicsXDao.insert(demographics.demographics)
-
         return try {
             val budget = spendIdApi.getBudgetAsync(demographics)
 
             Log.i("SpendidRepository", "com.example.spendidly.models.Budget fetched:$budget")
 
             budgetXDao.insert(budget.budget)
-
+            demographicsXDao.insert(demographics.demographics)
             ResponseState.Success(budget)
-        } catch(ex: Exception) { // the only way of handling multiple exceptions rn
+        } catch(ex: Exception) { // the only way of handling multiple exceptions right now
             when (ex) {
-                // TODO: probably add custom exception if the user has no access to Internet
+                is SPENDiDAPI.NoConnectivityException -> ResponseState.Error.NoConnectivityError // connection errors
                 is HttpException -> ResponseState.Error.NetworkError(ex.code()) // api errors
-                else -> ResponseState.Unknown // unknown errors
+                else -> ResponseState.Unknown
             }
         }
     }
 
+    // latest cache
     fun getLatestBudgetXCache(): LiveData<BudgetX?> = budgetXDao.getLatestBudgetX()
 
-    private suspend fun getAllBudgetXCache(): List<BudgetX>? = budgetXDao.getAllBudgetX()
+    // average cache
+    fun getAverageBudget() : LiveData<BudgetX?> = budgetXDao.getAverageBudget()
 
-    suspend fun getAverageBudgetXCache(): BudgetX? {
-        val allBudgetX = getAllBudgetXCache()
-        Log.i("SpendidRepo", "allBudgetsFetched$allBudgetX")
-        if(allBudgetX != null && allBudgetX.isNotEmpty()) {
-            return allBudgetX.reduce(BudgetX::plus) / allBudgetX.size
-            // should work; FIXME if something bugs here (from reduce possibly)
-        }
-        return null
-    }
-
-    // TODO: for use in other fragment, listing all demographics
-    suspend fun getAllDemographicsXCache(): List<DemographicsX>? = demographicsXDao.getAllDemographicsX()
+    fun getAllDemographicsXCache(): LiveData<List<DemographicsX>?> = demographicsXDao.getAllDemographicsX()
 
     suspend fun getLatestDemographicsXCache(): DemographicsX? = demographicsXDao.getLatestDemographicsX()
 }

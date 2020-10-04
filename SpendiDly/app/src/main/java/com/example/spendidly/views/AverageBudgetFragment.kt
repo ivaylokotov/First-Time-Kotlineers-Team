@@ -10,6 +10,10 @@ import com.example.spendidly.viewmodels.AverageBudgetFragmentViewModel
 class AverageBudgetFragment : BudgetFragment() {
     private lateinit var viewModel: AverageBudgetFragmentViewModel
 
+    init {
+        headerText = "Your Average Budget"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

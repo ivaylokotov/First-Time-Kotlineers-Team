@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/averageBudgetFragment"
         android:name="com.example.spendidly.views.AverageBudgetFragment"
-        android:label="AverageBudgetFragment" >
+        android:label="Average Budget">
         <action
             android:id="@+id/action_averageBudgetFragment_to_latestBudgetFragment"
             app:destination="@id/latestBudgetFragment" />
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/latestBudgetFragment"
         android:name="com.example.spendidly.views.LatestBudgetFragment"
-        android:label="LatestBudgetFragment" >
+        android:label="Latest Budget">
         <action
             android:id="@+id/action_latestBudgetFragment_to_userInputFragment"
             app:destination="@id/userInputFragment" />
@@ -30,7 +30,7 @@
     <fragment
         android:id="@+id/userInputFragment"
         android:name="com.example.spendidly.views.UserInputFragment"
-        android:label="UserInputFragment" >
+        android:label="Input">
         <action
             android:id="@+id/action_userInputFragment_to_latestBudgetFragment"
             app:destination="@id/latestBudgetFragment" />
@@ -41,10 +41,12 @@
     <fragment
         android:id="@+id/splashScreenFragment"
         android:name="com.example.spendidly.views.SplashScreenFragment"
-        android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" >
+        android:label="SpendiDly"
+        tools:layout="@layout/fragment_splash_screen">
         <action
             android:id="@+id/action_splashScreenFragment_to_userInputFragment"
+            app:popUpTo="@+id/userInputFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/userInputFragment" />
     </fragment>
 </navigation>

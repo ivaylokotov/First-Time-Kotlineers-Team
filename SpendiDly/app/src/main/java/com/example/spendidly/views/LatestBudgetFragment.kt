@@ -15,6 +15,10 @@ import com.example.spendidly.viewmodels.LatestBudgetFragmentViewModel
 class LatestBudgetFragment : BudgetFragment() {
     private lateinit var viewModel: LatestBudgetFragmentViewModel
 
+    init {
+        headerText = "Your Latest Budget"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,7 +30,7 @@ class LatestBudgetFragment : BudgetFragment() {
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         ).get(LatestBudgetFragmentViewModel::class.java)
         binding.viewModel = viewModel
-        return binding.root // TODO: get viewModel and set the superclass binding variable to it
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

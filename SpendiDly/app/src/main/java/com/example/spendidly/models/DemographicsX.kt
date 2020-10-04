@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "demographics")
 data class DemographicsX(
     @PrimaryKey(autoGenerate = false)
-    var insertTime: Long? = null,
+    var insertTime: Long,
     @ColumnInfo(name = "age")
     var age: Int,
     @ColumnInfo(name = "gross_annual_income")

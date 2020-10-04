@@ -62,7 +62,7 @@ class UserInputFragmentViewModel(application: Application) : BaseViewModel(appli
 
     private fun getDemographicsFields(): Demographics {
         val demographics = DemographicsX(
-            Calendar.getInstance().timeInMillis / 1000,
+            System.currentTimeMillis(),
             age.value!!.toInt(),
             grossAnnualIncome.value!!.toInt(),
             members.value!!.toInt(),

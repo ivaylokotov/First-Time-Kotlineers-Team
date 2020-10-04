@@ -3,7 +3,7 @@
 
     <!--Splash screen stuff that we'll need-->
     <string name="welcome_message">Welcome to\nSpendiDly!</string>
-    <string name="app_description">Your go-to budget management solution!</string>
+    <string name="app_description">Please enter your credentials</string>
 
     <!--BottomNav titles-->
     <string name="change_toUserInputFragment">Input</string>
@@ -75,6 +75,7 @@
     <string name="toys_hobbies">Toys &amp; Hobbies</string>
 
     <!--Misc-->
+    <string name="past_demographics">Past Demographics</string>
     <string name="submit_button_hint">Submit &amp; Save</string>
 
     <string name="empty_api_results">No model found</string>

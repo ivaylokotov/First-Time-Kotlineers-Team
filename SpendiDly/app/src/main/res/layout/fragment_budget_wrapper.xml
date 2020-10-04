@@ -5,6 +5,8 @@
     <data>
         <variable name="viewModel"
             type="com.example.spendidly.viewmodels.BudgetFragmentViewModel"/>
+        <variable name="headerText"
+            type="java.lang.String"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,6 +31,7 @@
             layout="@layout/fragment_budget"
             android:visibility="invisible"
             app:viewModel="@{viewModel}"
+            app:headerText="@{headerText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
