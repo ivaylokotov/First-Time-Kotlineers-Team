@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         // Setup drawer with the actionBar
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.drawer_recycler_view)
+        val recyclerView = findViewById<RecyclerView>(R.id.past_demographics_recycler_view)
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
