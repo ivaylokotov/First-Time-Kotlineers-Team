@@ -1,5 +1,6 @@
 package com.example.spendidly.api
 
+import android.net.ConnectivityManager
 import com.example.spendidly.BuildConfig
 import com.example.test.data.Budget
 import com.example.test.data.Demographics
@@ -10,6 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.POST
+import java.io.IOException
 
 interface SPENDiDAPI {
     @POST("budgets/generate")
@@ -20,9 +22,15 @@ interface SPENDiDAPI {
     companion object {
         const val BASE_URL = "https://api.spendid.io/v1.0/"
 
-        operator fun invoke(): SPENDiDAPI {
+        operator fun invoke(connectivityManager: ConnectivityManager): SPENDiDAPI {
             // TODO: Check connectivity for request interceptor
             val requestInterceptor = Interceptor {
+                val activeNetworkInfo = connectivityManager.activeNetworkInfo
+
+                if(activeNetworkInfo != null && !activeNetworkInfo.isConnected) {
+                    throw NoConnectivityException()
+                }
+
                 val headers = it.request().headers()
                     .newBuilder()
                     .add("accept", "application/json")
@@ -52,4 +60,6 @@ interface SPENDiDAPI {
                 .create(SPENDiDAPI::class.java) // reflections ftw
         }
     }
+
+    class NoConnectivityException : IOException()
 }

@@ -21,7 +21,6 @@ class PastDemographicsXAdapter(private var demographicsX: List<DemographicsX>) :
         holder: PastDemographicsXAdapter.DemographicsXViewHolder,
         position: Int
     ) {
-        TODO("Not yet implemented")
     }
 
     override fun getItemCount(): Int {

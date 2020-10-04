@@ -32,7 +32,8 @@ class SpendiDRepository(
             when (ex) {
                 // TODO: probably add custom exception if the user has no access to Internet
                 is HttpException -> ResponseState.Error.NetworkError(ex.code()) // api errors
-                else -> ResponseState.Unknown // unknown errors
+                is SPENDiDAPI.NoConnectivityException -> ResponseState.Error.NoConnectivityError // connection errors
+                else -> ResponseState.Unknown
             }
         }
     }
