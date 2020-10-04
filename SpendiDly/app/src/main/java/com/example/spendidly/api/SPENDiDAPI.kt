@@ -1,6 +1,9 @@
 package com.example.spendidly.api
 
 import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.spendidly.BuildConfig
 import com.example.test.data.Budget
 import com.example.test.data.Demographics
@@ -22,12 +25,16 @@ interface SPENDiDAPI {
     companion object {
         const val BASE_URL = "https://api.spendid.io/v1.0/"
 
+        @RequiresApi(Build.VERSION_CODES.N)
         operator fun invoke(connectivityManager: ConnectivityManager): SPENDiDAPI {
             // TODO: Check connectivity for request interceptor
             val requestInterceptor = Interceptor {
-                val activeNetworkInfo = connectivityManager.activeNetworkInfo
+                val activeNetworkInfo = connectivityManager.activeNetwork
 
-                if(activeNetworkInfo != null && !activeNetworkInfo.isConnected) {
+                val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetworkInfo)
+
+                if(!(networkCapabilities != null &&
+                    networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET))) {
                     throw NoConnectivityException()
                 }
 
@@ -62,4 +69,5 @@ interface SPENDiDAPI {
     }
 
     class NoConnectivityException : IOException()
+
 }

@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import android.transition.AutoTransition
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.main_activity)
+
         viewModel = ViewModelProvider(this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         ).get(MainActivityViewModel::class.java)

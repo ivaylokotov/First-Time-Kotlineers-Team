@@ -26,10 +26,10 @@ class SpendiDRepository(
             budgetXDao.insert(budget.budget)
             demographicsXDao.insert(demographics.demographics)
             ResponseState.Success(budget)
-        } catch(ex: Exception) { // the only way of handling multiple exceptions rn
+        } catch(ex: Exception) { // the only way of handling multiple exceptions right now
             when (ex) {
-                is HttpException -> ResponseState.Error.NetworkError(ex.code()) // api errors
                 is SPENDiDAPI.NoConnectivityException -> ResponseState.Error.NoConnectivityError // connection errors
+                is HttpException -> ResponseState.Error.NetworkError(ex.code()) // api errors
                 else -> ResponseState.Unknown
             }
         }
